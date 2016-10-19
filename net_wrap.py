@@ -33,3 +33,9 @@ def wifiList(interface="lo"):
 		if len(cellDic)>0:
 			resultList.append(cellDic)
 	return resultList
+def tryConnect(ssid, password, interface):
+	sysOut=subprocess.check_output("nmcli d wifi connect "+ssid+" password "+password.replace("!!","\\!!")+" iface "+ interface, shell=True).decode("utf-8")[:-1]
+	if sysOut.find('successfully')>0:
+		return True
+	else:
+		return False
