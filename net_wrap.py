@@ -8,10 +8,11 @@ def interfaceUp(interface="lo"):
 
 def interfaceDown(interface="lo"):
 	subprocess.run("ifconfig "+interface+" down", shell=True, check=True)
-def targetsList(interface="lo"):
+
+def wifiList(interface="lo"):
 	sysOut=subprocess.check_output("iwlist "+interface+" scan", shell=True).decode("utf-8")[:-1].split("Cell ")
 
-	resulrList=[]
+	resultList=[]
 
 	for cell in sysOut:
 		cellDic={}
@@ -29,4 +30,6 @@ def targetsList(interface="lo"):
 				cellDic['Encryption key']=line.split("Encryption key:")[1]
 			elif line.find("ESSID:")>=0:
 				cellDic['ESSID']=line.split("ESSID:")[1]
-		print(cellDic)
+		if len(cellDic)>0:
+			resultList.append(cellDic)
+	return resultList

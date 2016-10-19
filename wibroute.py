@@ -13,4 +13,9 @@ for inter in interfacesList:
 	print("["+str(interfacesList.index(inter))+"] "+inter)
 curIntIndex=int(input(">>> "))
 curInt=interfacesList[curIntIndex]
-net_wrap.targetsList(curInt)
+targetsList=net_wrap.wifiList(curInt)
+print('Choose target: ')
+for cell in targetsList:
+	print("["+str(targetsList.index(cell))+"] "+cell['Address']+" | "+cell['ESSID']+" | Encryption key: "+cell['Encryption key']  +"\n")
+targetIndex=int(input(">>> "))
+target=targetsList[targetIndex]
