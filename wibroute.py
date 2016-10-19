@@ -7,4 +7,9 @@ Created on 13.10.2016
 '''
 
 import net_wrap
-print(net_wrap.interfacesList())
+interfacesList=net_wrap.interfacesList()
+print('Choose interface:\n')
+for inter in interfacesList:
+	print("["+str(interfacesList.index(inter))+"] "+inter)
+curIntIndex=int(input(">>> "))
+curInt=interfacesList[curIntIndex]
