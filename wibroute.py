@@ -13,3 +13,4 @@ for inter in interfacesList:
 	print("["+str(interfacesList.index(inter))+"] "+inter)
 curIntIndex=int(input(">>> "))
 curInt=interfacesList[curIntIndex]
+net_wrap.targetsList(curInt)

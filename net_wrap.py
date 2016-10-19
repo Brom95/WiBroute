@@ -8,3 +8,25 @@ def interfaceUp(interface="lo"):
 
 def interfaceDown(interface="lo"):
 	subprocess.run("ifconfig "+interface+" down", shell=True, check=True)
+def targetsList(interface="lo"):
+	sysOut=subprocess.check_output("iwlist "+interface+" scan", shell=True).decode("utf-8")[:-1].split("Cell ")
+
+	resulrList=[]
+
+	for cell in sysOut:
+		cellDic={}
+		
+		for line in cell.split("\n"):
+			if line.find("Address:")>=0:
+				cellDic['Address']=line.split("Address: ")[1]
+			elif line.find("Channel:")>=0:
+				cellDic['Channel']=line.split("Channel:")[1]
+			elif line.find("Frequency:")>=0:
+				cellDic['Frequency']=line.split("Frequency:")[1]
+			elif line.find("Signal level=")>=0:
+				cellDic['Signal level']=line.split("Signal level=")[1]
+			elif line.find("Encryption key:")>=0:
+				cellDic['Encryption key']=line.split("Encryption key:")[1]
+			elif line.find("ESSID:")>=0:
+				cellDic['ESSID']=line.split("ESSID:")[1]
+		print(cellDic)
