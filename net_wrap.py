@@ -36,7 +36,7 @@ def wifiList(interface="lo"):
 def tryConnect(ssid, password, interface):
 	try:
 		print()
-		sysOut=subprocess.check_output("nmcli d wifi connect "+ssid+" password "+password.replace("!","\!").replace("\n","")+" iface "+ interface, shell=True).decode("utf-8")[:-1]
+		sysOut=subprocess.check_output("nmcli d wifi connect "+ssid+" password "+password.replace("!","\!").replace("\n","").replace("?","\?")+" iface "+ interface, shell=True).decode("utf-8")[:-1]
 	except:
 		return False
 	if sysOut.find('successfully')>0:
