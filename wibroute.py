@@ -24,5 +24,7 @@ with open("passwords.txt") as infile:
     	print("Try: "+password+"\n")
     	res=net_wrap.tryConnect(target['ESSID'], password, curInt)
     	if res==True:
-    		break
+    		print("="*20)
+    		print(password)
+    		exit()
 	
