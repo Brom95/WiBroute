@@ -20,8 +20,8 @@ for cell in targetsList:
 targetIndex=int(input(">>> "))
 target=targetsList[targetIndex]
 with open("passwords.txt") as infile:
-    for password in infile:
-    	print("Try: "+password+"\n")
+    for idx, password in enumerate(infile):
+    	print("\rTry[#{}]\t{}".format(idx, password), end='')
     	res=net_wrap.tryConnect(target['ESSID'], password, curInt)
     	if res==True:
     		print("="*20)
