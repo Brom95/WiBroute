@@ -7,6 +7,7 @@ Created on 13.10.2016
 '''
 
 import net_wrap
+import os
 interfacesList=net_wrap.interfacesList()
 print('Choose interface:\n')
 for inter in interfacesList:
@@ -21,6 +22,8 @@ targetIndex=int(input(">>> "))
 target=targetsList[targetIndex]
 with open("passwords.txt") as infile:
     for idx, password in enumerate(infile):
+    	if(os.path.isdir('/etc/NetworkManager/system-connections/')):
+    		os.system('rm -f /etc/NetworkManager/system-connections/'+target['ESSID']+"*")
     	print("\rTry[#{}]\t{}".format(idx, password), end='')
     	res=net_wrap.tryConnect(target['ESSID'], password, curInt)
     	if res==True:
